@@ -1,0 +1,39 @@
+{
+  "genes": [
+    {
+      "id": "BRCA1",
+      "position": { "x": 0, "y": 0, "z": 0 },
+      "dimensions": { "width": 0.5, "height": 4, "depth": 0.5 },
+      "color": "#FF5733",
+      "description": "Breast cancer type 1 susceptibility protein"
+    },
+    {
+      "id": "TP53",
+      "position": { "x": 1, "y": 0, "z": 0 },
+      "dimensions": { "width": 0.5, "height": 6, "depth": 0.5 },
+      "color": "#33FF57",
+      "description": "Tumor protein p53"
+    },
+    {
+      "id": "EGFR",
+      "position": { "x": 2, "y": 0, "z": 0 },
+      "dimensions": { "width": 0.5, "height": 5, "depth": 0.5 },
+      "color": "#3357FF",
+      "description": "Epidermal growth factor receptor"
+    },
+    {
+      "id": "MYC",
+      "position": { "x": 3, "y": 0, "z": 0 },
+      "dimensions": { "width": 0.5, "height": 3, "depth": 0.5 },
+      "color": "#F1C40F",
+      "description": "Myc proto-oncogene protein"
+    },
+    {
+      "id": "CFTR",
+      "position": { "x": 4, "y": 0, "z": 0 },
+      "dimensions": { "width": 0.5, "height": 7, "depth": 0.5 },
+      "color": "#9B59B6",
+      "description": "Cystic fibrosis transmembrane conductance regulator"
+    }
+  ]
+}
