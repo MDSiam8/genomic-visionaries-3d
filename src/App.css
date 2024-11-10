@@ -1,39 +1,5 @@
 /* src/App.css */
 
-/* Existing styles */
-
-.app-container {
-  width: 100%;
-  min-height: 100vh; /* Changed from height to min-height for flexibility */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem; /* Added padding for better spacing */
-  gap: 20px;
-}
-
-.canvas-container {
-  width: 100%;
-  max-width: 800px;
-  height: 600px;
-  border: 2px solid black;
-}
-
-.canvas-container canvas {
-  width: 100% !important;
-  height: 100% !important;
-  background: #e0e0e0; /* Changed background to a neutral color */
-}
-
-h1 {
-  margin-bottom: 1rem;
-}
-
-button {
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-}
-
 /* Tooltip styles */
 .gene-tooltip {
   background: rgba(255, 255, 255, 0.9);
@@ -41,9 +7,51 @@ button {
   border-radius: 5px;
   border: 1px solid #ccc;
   color: #333;
+  font-size: 0.9rem;
+  max-width: 150px;
+  text-align: left;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .gene-tooltip strong {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
+  color: #007bff;
+}
+
+/* Modal styles */
+.details-modal {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  width: 300px;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.details-modal h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.details-modal p {
+  margin: 0.5rem 0;
+}
+
+.details-modal button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.details-modal button:hover {
+  background-color: #0056b3;
 }
