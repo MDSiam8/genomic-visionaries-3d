@@ -1,0 +1,51 @@
+/* src/components/VariantInfoSidebar.css */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100vh;
+    background-color: #f9f9f9;
+    padding: 20px;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.sidebar p {
+    margin: 10px 0;
+    color: #555;
+    font-size: 1rem;
+}
+
+.sidebar button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.sidebar button:hover {
+    background-color: #0056b3;
+}
+
+.sidebar {
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(0);
+}
+
+/* Hide sidebar when it's closed */
+.sidebar-hidden {
+    transform: translateX(100%);
+}
