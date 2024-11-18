@@ -6,7 +6,6 @@ const GenomicVisualization = ({ data, onSelectVariant, filters, selectedChromoso
     const [hoveredTrait, setHoveredTrait] = useState(null);
     const [filteredData, setFilteredData] = useState(data);
 
-    // Filter data based on filters and selected chromosome
     useEffect(() => {
         let filtered = data;
 
@@ -35,47 +34,53 @@ const GenomicVisualization = ({ data, onSelectVariant, filters, selectedChromoso
         setFilteredData(filtered);
     }, [filters, data, selectedChromosome]);
 
-    // Render chromosomes
     const createChromosomes = () => {
-        return Array.from({ length: 23 })
-            .map((_, index) => {
-                const chromosomeIndex = index + 1;
-                const isSelected = selectedChromosome
-                    ? chromosomeIndex.toString() === selectedChromosome
-                    : true;
+        // If a chromosome is selected, render only that chromosome
+        if (selectedChromosome) {
+            const chromosomeIndex = isNaN(selectedChromosome)
+                ? selectedChromosome === "X"
+                    ? 23
+                    : 24 // Assume Y is the 24th chromosome
+                : parseInt(selectedChromosome);
 
-                return (
-                    <mesh
-                        key={chromosomeIndex}
-                        position={[0, chromosomeIndex * -6, 0]}
-                    >
-                        <boxGeometry args={[100, 1, 1]} />
-                        <meshBasicMaterial color={isSelected ? 'blue' : 'grey'} />
-                    </mesh>
-                );
-            })
+            return (
+                <mesh
+                    key={chromosomeIndex}
+                    position={[0, chromosomeIndex * -6, 0]}
+                >
+                    <boxGeometry args={[100, 1, 1]} />
+                    <meshBasicMaterial color="grey" />
+                </mesh>
+            );
+        }
+
+        // Render all chromosomes if no selection is made
+        return Array.from({ length: 23 })
+            .map((_, index) => (
+                <mesh
+                    key={index + 1}
+                    position={[0, (index + 1) * -6, 0]}
+                >
+                    <boxGeometry args={[100, 1, 1]} />
+                    <meshBasicMaterial color="grey" />
+                </mesh>
+            ))
             .concat(
                 // Add X and Y chromosomes
-                ['X', 'Y'].map((chromosome, index) => {
-                    const isSelected = selectedChromosome
-                        ? chromosome === selectedChromosome
-                        : true;
-
-                    return (
-                        <mesh
-                            key={chromosome}
-                            position={[0, (23 + index) * -6, 0]}
-                        >
-                            <boxGeometry args={[100, 1, 1]} />
-                            <meshBasicMaterial color={isSelected ? 'blue' : 'grey'} />
-                        </mesh>
-                    );
-                })
+                ['X', 'Y'].map((chromosome, index) => (
+                    <mesh
+                        key={chromosome}
+                        position={[0, (23 + index) * -6, 0]}
+                    >
+                        <boxGeometry args={[100, 1, 1]} />
+                        <meshBasicMaterial color="grey" />
+                    </mesh>
+                ))
             );
     };
 
-    // Render trait markers
     const createTraitMarkers = () => {
+        // Render markers only for filtered data (which includes selected chromosome filtering)
         return filteredData.map((variant, index) => {
             const {
                 Chromosome,
@@ -85,7 +90,6 @@ const GenomicVisualization = ({ data, onSelectVariant, filters, selectedChromoso
                 RiskAllele,
                 PValue,
                 OddsRatio,
-                ConfidenceInterval,
                 Position,
                 MappedGene,
             } = variant;
@@ -93,7 +97,7 @@ const GenomicVisualization = ({ data, onSelectVariant, filters, selectedChromoso
             return (
                 <mesh
                     key={index}
-                    position={[NormalizedPosition, -Chromosome * 6, 0]}
+                    position={[NormalizedPosition, -Chromosome * 6, 0]} // Correct vertical position
                     onPointerOver={() => setHoveredTrait(variant)}
                     onPointerOut={() => setHoveredTrait(null)}
                     onClick={() => onSelectVariant(variant)}
@@ -117,8 +121,6 @@ const GenomicVisualization = ({ data, onSelectVariant, filters, selectedChromoso
                                 <strong>P-Value:</strong> {PValue.toExponential(2)}
                                 <br />
                                 <strong>Odds Ratio:</strong> {OddsRatio}
-                                <br />
-                                <strong>CI:</strong> {ConfidenceInterval}
                             </div>
                         </Html>
                     )}
@@ -129,7 +131,7 @@ const GenomicVisualization = ({ data, onSelectVariant, filters, selectedChromoso
 
     return (
         <group>
-            {createChromosomes()} {/* Render all chromosomes */}
+            {createChromosomes()} {/* Render chromosomes dynamically based on selection */}
             {createTraitMarkers()} {/* Render markers for filtered variants */}
         </group>
     );

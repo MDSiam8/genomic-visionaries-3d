@@ -13,7 +13,7 @@ function App() {
     const [selectedChromosome, setSelectedChromosome] = useState(null); // Track selected chromosome
 
     useEffect(() => {
-        fetch('/assets/o1-gwas_cleaned.json')
+        fetch('/assets/o1-gwas_strict_filtered.json')
             .then((response) => response.json())
             .then((jsonData) => setData(jsonData))
             .catch((error) => console.error('Error fetching data:', error));
