@@ -13,7 +13,7 @@ function App() {
     const [selectedChromosome, setSelectedChromosome] = useState(null); // Track selected chromosome
 
     useEffect(() => {
-        fetch('/assets/clinvar_filtered.json')
+        fetch('/assets/o1-gwas_cleaned.json')
             .then((response) => response.json())
             .then((jsonData) => setData(jsonData))
             .catch((error) => console.error('Error fetching data:', error));
@@ -76,8 +76,12 @@ function App() {
                     <select value={selectedChromosome || ''} onChange={handleChromosomeSelect}>
                         <option value="">All Chromosomes</option>
                         {[...Array(23)].map((_, i) => (
-                            <option key={i + 1} value={i + 1}>Chromosome {i + 1}</option>
+                            <option key={i + 1} value={i + 1}>
+                                Chromosome {i + 1}
+                            </option>
                         ))}
+                        <option value="X">Chromosome X</option>
+                        <option value="Y">Chromosome Y</option>
                     </select>
                 </label>
             </div>

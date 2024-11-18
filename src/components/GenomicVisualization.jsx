@@ -1,17 +1,16 @@
 // src/components/GenomicVisualization.jsx
 import React, { useState, useEffect } from 'react';
 import { Html } from '@react-three/drei';
-import { useThree } from '@react-three/fiber';
 
 const GenomicVisualization = ({ data, onSelectVariant, filters, selectedChromosome }) => {
     const [hoveredTrait, setHoveredTrait] = useState(null);
     const [filteredData, setFilteredData] = useState(data);
-    const { camera } = useThree();
 
-    // Apply filters whenever they change
+    // Filter data based on filters and selected chromosome
     useEffect(() => {
         let filtered = data;
 
+        // Apply positional filters
         if (filters.minPosition || filters.maxPosition) {
             const min = parseInt(filters.minPosition, 10) || 0;
             const max = parseInt(filters.maxPosition, 10) || Infinity;
@@ -20,61 +19,82 @@ const GenomicVisualization = ({ data, onSelectVariant, filters, selectedChromoso
             );
         }
 
+        // Apply keyword filter
         if (filters.traitKeyword) {
             const keyword = filters.traitKeyword.toLowerCase();
             filtered = filtered.filter((variant) =>
-                variant.TraitAssociation.toLowerCase().includes(keyword)
+                variant.DiseaseOrTrait.toLowerCase().includes(keyword)
             );
         }
 
-        setFilteredData(filtered); // Ensure all variants matching the filters are shown
-    }, [filters, data]);
-
-    // Adjust camera to dynamically follow the selected chromosome level
-    useEffect(() => {
+        // Filter for the selected chromosome
         if (selectedChromosome) {
-            const yPosition = -selectedChromosome * 6; // Calculate y-position for chromosome
-            camera.position.set(0, yPosition, 50); // Set the camera closer to chromosome level
-            camera.lookAt(0, yPosition, 0);        // Make the camera look directly at the chromosome level
-        } else {
-            // Reset camera to a more general view when no chromosome is selected
-            camera.position.set(0, 10, 150);
-            camera.lookAt(0, 0, 0);
+            filtered = filtered.filter((variant) => variant.Chromosome === selectedChromosome);
         }
-    }, [selectedChromosome, camera]);
 
-    const createChromosome = (chromosomeIndex) => {
-        return (
-            <mesh
-                key={chromosomeIndex}
-                position={[0, chromosomeIndex * -6, 0]}
-            >
-                <boxGeometry args={[100, 1, 1]} />
-                <meshBasicMaterial color="grey" />
-            </mesh>
-        );
+        setFilteredData(filtered);
+    }, [filters, data, selectedChromosome]);
+
+    // Render chromosomes
+    const createChromosomes = () => {
+        return Array.from({ length: 23 })
+            .map((_, index) => {
+                const chromosomeIndex = index + 1;
+                const isSelected = selectedChromosome
+                    ? chromosomeIndex.toString() === selectedChromosome
+                    : true;
+
+                return (
+                    <mesh
+                        key={chromosomeIndex}
+                        position={[0, chromosomeIndex * -6, 0]}
+                    >
+                        <boxGeometry args={[100, 1, 1]} />
+                        <meshBasicMaterial color={isSelected ? 'blue' : 'grey'} />
+                    </mesh>
+                );
+            })
+            .concat(
+                // Add X and Y chromosomes
+                ['X', 'Y'].map((chromosome, index) => {
+                    const isSelected = selectedChromosome
+                        ? chromosome === selectedChromosome
+                        : true;
+
+                    return (
+                        <mesh
+                            key={chromosome}
+                            position={[0, (23 + index) * -6, 0]}
+                        >
+                            <boxGeometry args={[100, 1, 1]} />
+                            <meshBasicMaterial color={isSelected ? 'blue' : 'grey'} />
+                        </mesh>
+                    );
+                })
+            );
     };
 
+    // Render trait markers
     const createTraitMarkers = () => {
         return filteredData.map((variant, index) => {
             const {
                 Chromosome,
                 NormalizedPosition,
                 Color,
-                TraitAssociation,
-                ReferenceAllele,
-                AlternateAllele,
-                Position
+                DiseaseOrTrait,
+                RiskAllele,
+                PValue,
+                OddsRatio,
+                ConfidenceInterval,
+                Position,
+                MappedGene,
             } = variant;
 
             return (
                 <mesh
                     key={index}
                     position={[NormalizedPosition, -Chromosome * 6, 0]}
-                    onPointerOver={(e) => {
-                        e.stopPropagation();
-                        setHoveredTrait(variant);
-                    }}
+                    onPointerOver={() => setHoveredTrait(variant)}
                     onPointerOut={() => setHoveredTrait(null)}
                     onClick={() => onSelectVariant(variant)}
                 >
@@ -84,15 +104,21 @@ const GenomicVisualization = ({ data, onSelectVariant, filters, selectedChromoso
                     {hoveredTrait === variant && (
                         <Html position={[0, 1.5, 0]} center>
                             <div className="gene-tooltip">
+                                <strong>Disease/Trait:</strong> {DiseaseOrTrait}
+                                <br />
+                                <strong>Gene:</strong> {MappedGene}
+                                <br />
                                 <strong>Chromosome:</strong> {Chromosome}
                                 <br />
                                 <strong>Position:</strong> {Position}
                                 <br />
-                                <strong>Trait:</strong> {TraitAssociation}
+                                <strong>Risk Allele:</strong> {RiskAllele}
                                 <br />
-                                <strong>Reference Allele:</strong> {ReferenceAllele}
+                                <strong>P-Value:</strong> {PValue.toExponential(2)}
                                 <br />
-                                <strong>Alternate Allele:</strong> {AlternateAllele}
+                                <strong>Odds Ratio:</strong> {OddsRatio}
+                                <br />
+                                <strong>CI:</strong> {ConfidenceInterval}
                             </div>
                         </Html>
                     )}
@@ -103,11 +129,8 @@ const GenomicVisualization = ({ data, onSelectVariant, filters, selectedChromoso
 
     return (
         <group>
-            {/* Render chromosomes */}
-            {Array.from({ length: 23 }).map((_, index) => createChromosome(index + 1))}
-
-            {/* Render trait markers */}
-            {createTraitMarkers()}
+            {createChromosomes()} {/* Render all chromosomes */}
+            {createTraitMarkers()} {/* Render markers for filtered variants */}
         </group>
     );
 };
