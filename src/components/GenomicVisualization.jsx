@@ -31,6 +31,22 @@ const GenomicVisualization = ({ data, onSelectVariant, filters, selectedChromoso
             filtered = filtered.filter((variant) => variant.Chromosome === chromosomeString);
         }
 
+        // Apply p-value filter
+        if (filters.pValueThreshold) {
+            const threshold = parseFloat(filters.pValueThreshold);
+            filtered = filtered.filter((variant) => variant.PValue <= threshold);
+        }
+
+        // Apply odds ratio filters
+        if (filters.minOddsRatio) {
+            const minOdds = parseFloat(filters.minOddsRatio);
+            filtered = filtered.filter((variant) => variant.OddsRatio >= minOdds);
+        }
+        if (filters.maxOddsRatio) {
+            const maxOdds = parseFloat(filters.maxOddsRatio);
+            filtered = filtered.filter((variant) => variant.OddsRatio <= maxOdds);
+        }
+
         // Scale traits to fit the new larger chromosome while keeping relative positions
         if (selectedChromosome) {
             const newChromosomeLength = 200; // Length of the larger chromosome
