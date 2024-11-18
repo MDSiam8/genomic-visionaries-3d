@@ -1,4 +1,3 @@
-// src/components/GenomicVisualization.jsx
 import React, { useState, useEffect } from 'react';
 import { Html } from '@react-three/drei';
 
@@ -26,61 +25,55 @@ const GenomicVisualization = ({ data, onSelectVariant, filters, selectedChromoso
             );
         }
 
-        // Filter for the selected chromosome
+        // Apply chromosome filter
         if (selectedChromosome) {
-            filtered = filtered.filter((variant) => variant.Chromosome === selectedChromosome);
+            const chromosomeString = selectedChromosome.toString();
+            filtered = filtered.filter((variant) => variant.Chromosome === chromosomeString);
+        }
+
+        // Scale traits to fit the new larger chromosome while keeping relative positions
+        if (selectedChromosome) {
+            const newChromosomeLength = 200; // Length of the larger chromosome
+            const originalChromosomeLength = 100; // Original length for scaling
+            filtered = filtered.map((variant) => ({
+                ...variant,
+                NormalizedPosition: (variant.NormalizedPosition / originalChromosomeLength) * newChromosomeLength, // Adjusted scaling
+            }));
         }
 
         setFilteredData(filtered);
     }, [filters, data, selectedChromosome]);
 
-    const createChromosomes = () => {
-        // If a chromosome is selected, render only that chromosome
-        if (selectedChromosome) {
-            const chromosomeIndex = isNaN(selectedChromosome)
-                ? selectedChromosome === "X"
-                    ? 23
-                    : 24 // Assume Y is the 24th chromosome
-                : parseInt(selectedChromosome);
-
-            return (
-                <mesh
-                    key={chromosomeIndex}
-                    position={[0, chromosomeIndex * -6, 0]}
-                >
-                    <boxGeometry args={[100, 1, 1]} />
+    const createChromosome = () => {
+        const chromosomeLength = selectedChromosome ? 200 : 100; // Larger chromosome for specific selection
+        if (!selectedChromosome) {
+            // Render all chromosomes if no specific chromosome is selected
+            return Array.from({ length: 23 }, (_, index) => (
+                <mesh key={index + 1} position={[0, (index + 1) * -10, 0]}>
+                    <boxGeometry args={[chromosomeLength, 3, 1]} />
                     <meshBasicMaterial color="grey" />
                 </mesh>
-            );
+            ));
         }
 
-        // Render all chromosomes if no selection is made
-        return Array.from({ length: 23 })
-            .map((_, index) => (
-                <mesh
-                    key={index + 1}
-                    position={[0, (index + 1) * -6, 0]}
-                >
-                    <boxGeometry args={[100, 1, 1]} />
-                    <meshBasicMaterial color="grey" />
-                </mesh>
-            ))
-            .concat(
-                // Add X and Y chromosomes
-                ['X', 'Y'].map((chromosome, index) => (
-                    <mesh
-                        key={chromosome}
-                        position={[0, (23 + index) * -6, 0]}
-                    >
-                        <boxGeometry args={[100, 1, 1]} />
-                        <meshBasicMaterial color="grey" />
-                    </mesh>
-                ))
-            );
+        // Render only the selected chromosome
+        const chromosomeIndex = isNaN(selectedChromosome)
+            ? selectedChromosome === "X"
+                ? 23
+                : 24 // Assume Y is the 24th chromosome
+            : parseInt(selectedChromosome);
+
+        return (
+            <mesh key={chromosomeIndex} position={[0, chromosomeIndex * -10, 0]}>
+                <boxGeometry args={[200, 3, 1]} /> {/* Larger chromosome size */}
+                <meshBasicMaterial color="grey" />
+            </mesh>
+        );
     };
 
     const createTraitMarkers = () => {
-        // Render markers only for filtered data (which includes selected chromosome filtering)
+        const zOffsetBase = 0.1; // Slight offset for overlapping traits along Z-axis
+
         return filteredData.map((variant, index) => {
             const {
                 Chromosome,
@@ -94,19 +87,22 @@ const GenomicVisualization = ({ data, onSelectVariant, filters, selectedChromoso
                 MappedGene,
             } = variant;
 
+            const zOffset = index * zOffsetBase % 3; // Adjust Z position for overlap
+            const yPosition = -Chromosome * 10; // Adjust for larger chromosome spacing
+
             return (
                 <mesh
                     key={index}
-                    position={[NormalizedPosition, -Chromosome * 6, 0]} // Correct vertical position
+                    position={[NormalizedPosition, yPosition, zOffset]}
                     onPointerOver={() => setHoveredTrait(variant)}
                     onPointerOut={() => setHoveredTrait(null)}
                     onClick={() => onSelectVariant(variant)}
                 >
-                    <boxGeometry args={[1, 1, 1]} />
+                    <boxGeometry args={[2, 2, 2]} /> {/* Slightly larger trait markers */}
                     <meshBasicMaterial color={Color} />
 
                     {hoveredTrait === variant && (
-                        <Html position={[0, 1.5, 0]} center>
+                        <Html position={[0, 3, 0]} center>
                             <div className="gene-tooltip">
                                 <strong>Disease/Trait:</strong> {DiseaseOrTrait}
                                 <br />
@@ -131,8 +127,8 @@ const GenomicVisualization = ({ data, onSelectVariant, filters, selectedChromoso
 
     return (
         <group>
-            {createChromosomes()} {/* Render chromosomes dynamically based on selection */}
-            {createTraitMarkers()} {/* Render markers for filtered variants */}
+            {createChromosome()} {/* Render the chromosome(s) */}
+            {createTraitMarkers()} {/* Render the associated traits */}
         </group>
     );
 };
