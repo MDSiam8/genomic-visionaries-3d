@@ -1,0 +1,46 @@
+/* src/components/InfoPanel.css */
+
+.info-panel {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.95); /* Semi-transparent white background */
+    padding: 25px;
+    border-radius: 10px;
+    max-width: 320px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    font-family: 'Montserrat', sans-serif;
+    color: #333333;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+}
+
+.info-panel h2 {
+    margin-top: 0;
+    font-size: 1.8em;
+    background: linear-gradient(90deg, #00b4db, #0083b0); /* Cyan-blue gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.info-panel p {
+    font-size: 0.95em;
+    line-height: 1.6;
+}
+
+.info-panel ul {
+    list-style: disc;
+    margin-left: 20px;
+    padding-left: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .info-panel {
+        top: auto;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 90%;
+    }
+}

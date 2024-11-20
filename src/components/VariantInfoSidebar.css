@@ -49,3 +49,212 @@
 .sidebar-hidden {
     transform: translateX(100%);
 }
+/* src/components/VariantInfoSidebar.css */
+.sidebar {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 10px;
+}
+
+.sidebar p {
+    margin: 10px 0;
+}
+
+.sidebar button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff4d4d;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.sidebar button:hover {
+    background-color: #ff1a1a;
+}
+
+/* Tooltip Styling */
+.tooltip {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    pointer-events: none;
+}
+
+/* src/components/VariantInfoSidebar.css */
+.sidebar {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background-color: rgba(50, 50, 50, 0.95); /* Slightly lighter dark gray */
+    color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    width: 300px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 10px;
+    color: #ff4d4d; /* Accent color for header */
+}
+
+.sidebar p {
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.sidebar button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff4d4d;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.sidebar button:hover {
+    background-color: #ff1a1a;
+    transform: scale(1.05);
+}
+
+/* src/components/VariantInfoSidebar.css */
+.sidebar {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, #2c3e50, #4ca1af);
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.sidebar p {
+    margin: 10px 0;
+    font-size: 1em;
+}
+
+.sidebar button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    border: none;
+    border-radius: 30px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1em;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 5px 5px 15px #cb202d, -5px -5px 15px #ff4b2b;
+}
+
+.sidebar button:hover {
+    transform: scale(1.05);
+    box-shadow: 7px 7px 20px #cb202d, -7px -7px 20px #ff4b2b;
+}
+
+/* Tooltip Styling */
+.tooltip {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    max-width: 220px;
+    pointer-events: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* src/components/VariantInfoSidebar.css */
+.sidebar {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, #ece9e6, #ffffff); /* Subtle gradient */
+    color: #333333;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    border-bottom: 1px solid #cccccc;
+    padding-bottom: 10px;
+    font-size: 1.5em;
+    color: #333333;
+}
+
+.sidebar p {
+    margin: 10px 0;
+    font-size: 1em;
+}
+
+.sidebar button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #6a11cb, #2575fc); /* Galaxy-themed gradient */
+    border: none;
+    border-radius: 30px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1em;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1), -5px -5px 15px rgba(255, 255, 255, 0.7);
+}
+
+.sidebar button:hover {
+    transform: scale(1.05);
+    box-shadow: 7px 7px 20px rgba(0, 0, 0, 0.15), -7px -7px 20px rgba(255, 255, 255, 0.9);
+}
+
+/* Tooltip Styling */
+.tooltip {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333333;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    max-width: 220px;
+    pointer-events: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}

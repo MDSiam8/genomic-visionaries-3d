@@ -26,6 +26,29 @@ const GenomicVisualization = ({ data, onSelectVariant, filters, selectedChromoso
             );
         }
 
+        // Apply P-Value filter
+        if (filters.maxPValue) {
+            const maxP = parseFloat(filters.maxPValue);
+            if (!isNaN(maxP)) {
+                filtered = filtered.filter((variant) => variant.PValue <= maxP);
+            }
+        }
+
+        // Apply Odds Ratio filter
+        const { minOddsRatio, maxOddsRatio } = filters;
+        if (minOddsRatio) {
+            const minOR = parseFloat(minOddsRatio);
+            if (!isNaN(minOR)) {
+                filtered = filtered.filter((variant) => variant.OddsRatio >= minOR);
+            }
+        }
+        if (maxOddsRatio) {
+            const maxOR = parseFloat(maxOddsRatio);
+            if (!isNaN(maxOR)) {
+                filtered = filtered.filter((variant) => variant.OddsRatio <= maxOR);
+            }
+        }
+
         // Filter for the selected chromosome
         if (selectedChromosome) {
             filtered = filtered.filter((variant) => variant.Chromosome === selectedChromosome);
@@ -49,7 +72,7 @@ const GenomicVisualization = ({ data, onSelectVariant, filters, selectedChromoso
                     position={[0, chromosomeIndex * -6, 0]}
                 >
                     <boxGeometry args={[100, 1, 1]} />
-                    <meshBasicMaterial color="grey" />
+                    <meshBasicMaterial color="white" />
                 </mesh>
             );
         }
@@ -73,7 +96,7 @@ const GenomicVisualization = ({ data, onSelectVariant, filters, selectedChromoso
                         position={[0, (23 + index) * -6, 0]}
                     >
                         <boxGeometry args={[100, 1, 1]} />
-                        <meshBasicMaterial color="grey" />
+                        <meshBasicMaterial color="white" />
                     </mesh>
                 ))
             );

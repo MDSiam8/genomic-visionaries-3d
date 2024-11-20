@@ -114,3 +114,1056 @@ canvas {
   width: 100% !important;
   height: 100% !important;
 }
+
+/* src/App.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #1a1a1a; /* Dark gray background */
+  color: #ffffff; /* White text for contrast */
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.filter-controls label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.filter-controls input,
+.filter-controls select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 5px;
+  background-color: #333333; /* Slightly lighter dark background for inputs */
+  color: #ffffff;
+}
+
+.filter-controls button {
+  padding: 10px 20px;
+  background-color: #ff4d4d;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.filter-controls button:hover {
+  background-color: #ff1a1a;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 1200px;
+  gap: 20px;
+}
+
+.model-viewer-container {
+  width: 30%;
+  height: 500px;
+  background-color: #2f2f2f; /* Dark gray */
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.canvas-container {
+  width: 70%;
+  height: 500px;
+  background-color: #2f2f2f; /* Dark gray */
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* Tooltip Styling */
+.gene-tooltip {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  max-width: 200px;
+}
+
+/* Sidebar Styling is already handled in VariantInfoSidebar.css */
+
+/* src/App.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1a1a1a; /* Dark gray background */
+  color: #ffffff; /* White text for contrast */
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #ffffff;
+  background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 2.5em;
+}
+
+.filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #232526, #414345);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+}
+
+.filter-controls label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.filter-controls input,
+.filter-controls select {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  margin-top: 5px;
+  background: linear-gradient(145deg, #3a3a3a, #2a2a2a);
+  color: #ffffff;
+  box-shadow: inset 5px 5px 10px #222222, inset -5px -5px 10px #333333;
+}
+
+.filter-controls input::placeholder {
+  color: #cccccc;
+}
+
+.filter-controls select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath fill='%23ffffff' d='M5 7l5 5 5-5H5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+.filter-controls button {
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #ff416c, #ff4b2b);
+  border: none;
+  border-radius: 30px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 5px 5px 15px #cb202d, -5px -5px 15px #ff4b2b;
+}
+
+.filter-controls button:hover {
+  transform: scale(1.05);
+  box-shadow: 7px 7px 20px #cb202d, -7px -7px 20px #ff4b2b;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 1200px;
+  gap: 20px;
+}
+
+.model-viewer-container {
+  width: 30%;
+  height: 500px;
+  background-color: #2f2f2f; /* Dark gray */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.canvas-container {
+  width: 70%;
+  height: 500px;
+  background-color: #2f2f2f; /* Dark gray */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* Tooltip Styling */
+.gene-tooltip {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  max-width: 220px;
+  pointer-events: none;
+}
+
+/* Sidebar Styling is already handled in VariantInfoSidebar.css */
+
+.filter-controls button {
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #ff416c, #ff4b2b);
+  border: none;
+  border-radius: 30px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 5px 5px 15px #cb202d, -5px -5px 15px #ff4b2b;
+}
+
+.filter-controls button:hover {
+  transform: scale(1.05);
+  box-shadow: 7px 7px 20px #cb202d, -7px -7px 20px #ff4b2b;
+}
+
+
+/* src/App.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #ffffff; /* Primarily white background */
+  color: #333333; /* Dark gray text for readability */
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #333333;
+  font-size: 2.5em;
+  background: linear-gradient(90deg, #1f4037, #99f2c8); /* Galaxy-themed gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #ece9e6, #ffffff); /* Subtle galaxy gradient */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+}
+
+.filter-controls label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: #333333;
+}
+
+.filter-controls input,
+.filter-controls select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 5px;
+  background: linear-gradient(145deg, #f0f0f0, #ffffff); /* Light gradient */
+  color: #333333;
+  box-shadow: inset 5px 5px 10px #d9d9d9, inset -5px -5px 10px #ffffff;
+}
+
+.filter-controls input::placeholder {
+  color: #aaaaaa;
+}
+
+.filter-controls select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath fill='%23333333' d='M5 7l5 5 5-5H5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+.filter-controls button {
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #6a11cb, #2575fc); /* Galaxy-themed gradient */
+  border: none;
+  border-radius: 30px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1), -5px -5px 15px rgba(255, 255, 255, 0.7);
+}
+
+.filter-controls button:hover {
+  transform: scale(1.05);
+  box-shadow: 7px 7px 20px rgba(0, 0, 0, 0.15), -7px -7px 20px rgba(255, 255, 255, 0.9);
+}
+
+.main-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 1200px;
+  gap: 20px;
+}
+
+.model-viewer-container {
+  width: 30%;
+  height: 500px;
+  background-color: #f9f9f9; /* Light background */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.canvas-container {
+  width: 70%;
+  height: 500px;
+  background-color: #f9f9f9; /* Light background */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* Tooltip Styling */
+.gene-tooltip {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333333;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  max-width: 220px;
+  pointer-events: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Sidebar Styling is already handled in VariantInfoSidebar.css */
+/* src/App.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #ffffff; /* Primarily white background */
+  color: #333333; /* Dark gray text for readability */
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #333333;
+  font-size: 2.5em;
+  background: linear-gradient(90deg, #1f4037, #99f2c8); /* Galaxy-themed gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #ece9e6, #ffffff); /* Subtle galaxy gradient */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+}
+
+.filter-controls label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: #333333;
+}
+
+.filter-controls input,
+.filter-controls select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 5px;
+  background: linear-gradient(145deg, #f0f0f0, #ffffff); /* Light gradient */
+  color: #333333;
+  box-shadow: inset 5px 5px 10px #d9d9d9, inset -5px -5px 10px #ffffff;
+}
+
+.filter-controls input::placeholder {
+  color: #aaaaaa;
+}
+
+.filter-controls select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath fill='%23333333' d='M5 7l5 5 5-5H5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+.filter-controls button {
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #6a11cb, #2575fc); /* Galaxy-themed gradient */
+  border: none;
+  border-radius: 30px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1), -5px -5px 15px rgba(255, 255, 255, 0.7);
+}
+
+.filter-controls button:hover {
+  transform: scale(1.05);
+  box-shadow: 7px 7px 20px rgba(0, 0, 0, 0.15), -7px -7px 20px rgba(255, 255, 255, 0.9);
+}
+
+.main-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 1200px;
+  gap: 20px;
+}
+
+.model-viewer-container {
+  width: 30%;
+  height: 500px;
+  background-color: #f9f9f9; /* Light background */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.canvas-container {
+  width: 70%;
+  height: 500px;
+  background-color: #f9f9f9; /* Light background */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* Tooltip Styling */
+.gene-tooltip {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333333;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  max-width: 220px;
+  pointer-events: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-content {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .model-viewer-container,
+  .canvas-container {
+      width: 100%;
+      height: 400px;
+  }
+
+  .filter-controls {
+      flex-direction: column;
+      align-items: stretch;
+  }
+
+  .filter-group {
+      width: 100%;
+  }
+}
+/* src/App.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #ffffff; /* Keep the overall app background white */
+  color: #333333; /* Dark gray text for readability */
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #333333;
+  font-size: 2.5em;
+  background: linear-gradient(90deg, #1f4037, #99f2c8); /* Galaxy-themed gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #ece9e6, #ffffff); /* Subtle galaxy gradient */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+}
+
+.filter-controls label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: #333333;
+}
+
+.filter-controls input,
+.filter-controls select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 5px;
+  background: linear-gradient(145deg, #f0f0f0, #ffffff); /* Light gradient */
+  color: #333333;
+  box-shadow: inset 5px 5px 10px #d9d9d9, inset -5px -5px 10px #ffffff;
+}
+
+.filter-controls input::placeholder {
+  color: #aaaaaa;
+}
+
+.filter-controls select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath fill='%23333333' d='M5 7l5 5 5-5H5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+.filter-controls button {
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #6a11cb, #2575fc); /* Galaxy-themed gradient */
+  border: none;
+  border-radius: 30px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1), -5px -5px 15px rgba(255, 255, 255, 0.7);
+}
+
+.filter-controls button:hover {
+  transform: scale(1.05);
+  box-shadow: 7px 7px 20px rgba(0, 0, 0, 0.15), -7px -7px 20px rgba(255, 255, 255, 0.9);
+}
+
+.main-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 1200px;
+  gap: 20px;
+}
+
+.model-viewer-container {
+  width: 30%;
+  height: 500px;
+  background-color: #0d0d0d; /* Match the 3D canvas background */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.canvas-container {
+  width: 70%;
+  height: 500px;
+  background-color: #f9f9f9; /* Light background */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* Tooltip Styling */
+.gene-tooltip {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333333;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  max-width: 220px;
+  pointer-events: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Sidebar Styling is already handled in VariantInfoSidebar.css */
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-content {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .model-viewer-container,
+  .canvas-container {
+      width: 100%;
+      height: 400px;
+  }
+
+  .filter-controls {
+      flex-direction: column;
+      align-items: stretch;
+  }
+
+  .filter-group {
+      width: 100%;
+  }
+}
+
+/* Additional Styling for Futuristic Elements */
+.model-viewer-container {
+  background: radial-gradient(circle at center, #1a1a1a, #0d0d0d); /* Adds depth */
+}
+
+
+/* src/App.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #ffffff; /* Keep the overall app background white */
+  color: #333333; /* Dark gray text for readability */
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #333333;
+  font-size: 2.5em;
+  background: linear-gradient(90deg, #1f4037, #99f2c8); /* Galaxy-themed gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #ece9e6, #ffffff); /* Subtle galaxy gradient */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+}
+
+.filter-controls label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: #333333;
+}
+
+.filter-controls input,
+.filter-controls select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 5px;
+  background: linear-gradient(145deg, #f0f0f0, #ffffff); /* Light gradient */
+  color: #333333;
+  box-shadow: inset 5px 5px 10px #d9d9d9, inset -5px -5px 10px #ffffff;
+}
+
+.filter-controls input::placeholder {
+  color: #aaaaaa;
+}
+
+.filter-controls select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath fill='%23333333' d='M5 7l5 5 5-5H5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+.filter-controls button {
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #6a11cb, #2575fc); /* Galaxy-themed gradient */
+  border: none;
+  border-radius: 30px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1), -5px -5px 15px rgba(255, 255, 255, 0.7);
+}
+
+.filter-controls button:hover {
+  transform: scale(1.05);
+  box-shadow: 7px 7px 20px rgba(0, 0, 0, 0.15), -7px -7px 20px rgba(255, 255, 255, 0.9);
+}
+
+.main-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 1200px;
+  gap: 20px;
+}
+
+.model-viewer-container {
+  width: 30%;
+  height: 500px;
+  background-color: #0d0d0d; /* Match the 3D canvas background */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.canvas-container {
+  width: 70%;
+  height: 500px;
+  background-color: #f9f9f9; /* Light background */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* Tooltip Styling */
+.gene-tooltip {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333333;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  max-width: 220px;
+  pointer-events: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Sidebar Styling is already handled in VariantInfoSidebar.css */
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-content {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .model-viewer-container,
+  .canvas-container {
+      width: 100%;
+      height: 400px;
+  }
+
+  .filter-controls {
+      flex-direction: column;
+      align-items: stretch;
+  }
+
+  .filter-group {
+      width: 100%;
+  }
+}
+
+/* Additional Styling for Futuristic Elements */
+.model-viewer-container {
+  background: radial-gradient(circle at center, #1a1a1a, #0d0d0d); /* Adds depth */
+}
+/* src/App.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #ffffff; /* Keep the overall app background white */
+  color: #333333; /* Dark gray text for readability */
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #333333;
+  font-size: 2.5em;
+  background: linear-gradient(90deg, #1f4037, #99f2c8); /* Galaxy-themed gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #ece9e6, #ffffff); /* Subtle galaxy gradient */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+}
+
+.filter-controls label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: #333333;
+}
+
+.filter-controls input,
+.filter-controls select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 5px;
+  background: linear-gradient(145deg, #f0f0f0, #ffffff); /* Light gradient */
+  color: #333333;
+  box-shadow: inset 5px 5px 10px #d9d9d9, inset -5px -5px 10px #ffffff;
+}
+
+.filter-controls input::placeholder {
+  color: #aaaaaa;
+}
+
+.filter-controls select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath fill='%23333333' d='M5 7l5 5 5-5H5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+.filter-controls button {
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #6a11cb, #2575fc); /* Galaxy-themed gradient */
+  border: none;
+  border-radius: 30px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1), -5px -5px 15px rgba(255, 255, 255, 0.7);
+}
+
+.filter-controls button:hover {
+  transform: scale(1.05);
+  box-shadow: 7px 7px 20px rgba(0, 0, 0, 0.15), -7px -7px 20px rgba(255, 255, 255, 0.9);
+}
+
+.main-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 1200px;
+  gap: 20px;
+}
+
+.model-viewer-container {
+  position: relative; /* To allow overlaying UI elements if needed */
+  width: 30%;
+  height: 500px;
+  background-color: #0d0d0d; /* Match the 3D canvas background */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.canvas-container {
+  width: 70%;
+  height: 500px;
+  background-color: #f9f9f9; /* Light background */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* Tooltip Styling */
+.gene-tooltip {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333333;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  max-width: 220px;
+  pointer-events: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Sidebar Styling is already handled in VariantInfoSidebar.css */
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-content {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .model-viewer-container,
+  .canvas-container {
+      width: 100%;
+      height: 400px;
+  }
+
+  .filter-controls {
+      flex-direction: column;
+      align-items: stretch;
+  }
+
+  .filter-group {
+      width: 100%;
+  }
+}
+
+/* Additional Styling for Futuristic Elements */
+.model-viewer-container {
+  background: radial-gradient(circle at center, #1a1a1a, #0d0d0d); /* Adds depth */
+}
+
+/* src/App.css */
+
+h1 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: #333333; /* Fallback color */
+  font-size: 2.5em;
+  background: linear-gradient(90deg, #6a11cb, #2575fc); /* Blue-purple gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* For non-WebKit browsers */
+  text-fill-color: transparent; /* For non-WebKit browsers */
+}
