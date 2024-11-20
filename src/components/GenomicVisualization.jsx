@@ -62,7 +62,7 @@ const GenomicVisualization = ({ data, onSelectVariant, filters, selectedChromoso
                     position={[0, (index + 1) * -6, 0]}
                 >
                     <boxGeometry args={[100, 1, 1]} />
-                    <meshBasicMaterial color="grey" />
+                    <meshBasicMaterial color="white" />
                 </mesh>
             ))
             .concat(
