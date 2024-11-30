@@ -1,4 +1,11 @@
 /* src/App.css */
+:root {
+  --primary-color: #6a11cb;
+  --secondary-color: #2575fc;
+  --background-color: #ffffff;
+  --text-color: #333333;
+  --font-family: 'Montserrat', sans-serif;
+}
 
 .app-container {
   width: 100%;
@@ -22,6 +29,25 @@ h1 {
   color: #333;
   margin: 0;
   z-index: 10; /* Ensure it stays above the 3D canvas */
+}
+
+/* Position the Help button in the top-right corner */
+.help-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  border: none;
+  border-radius: 30px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  z-index: 1000; /* Ensure it stays above other elements */
+}
+
+.help-button:hover {
+  background: var(--secondary-color);
 }
 
 /* Position filter controls just below the title */

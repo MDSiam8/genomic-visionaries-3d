@@ -1,0 +1,63 @@
+/* src/components/UserManual.css */
+
+.user-manual-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.user-manual-content {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 8px;
+  overflow-y: auto;
+  max-height: 90vh;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.user-manual-content h2,
+.user-manual-content h3 {
+  color: var(--primary-color);
+}
+
+.color-box {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  vertical-align: middle;
+  border: 1px solid #ccc;
+}
+
+/* Added styles to align bullet points to the left */
+.user-manual-content ul {
+  list-style-position: inside; /* Ensure bullets are inside the content area */
+  padding-left: 20px;          /* Add indentation to the list */
+  margin: 0;
+}
+
+.user-manual-content li {
+  text-align: left;            /* Align text to the left */
+  margin-bottom: 10px;         /* Optional: Add space between list items */
+}

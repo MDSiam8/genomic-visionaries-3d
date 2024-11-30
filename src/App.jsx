@@ -6,6 +6,7 @@ import VariantInfoSidebar from './components/VariantInfoSidebar';
 import CameraControls from './components/CameraControls';
 import ModelViewer from './components/ModelViewer'; // Import ModelViewer
 import './App.css';
+import UserManual from './components/UserManual';
 
 function App() {
     const [data, setData] = useState(null);
@@ -39,6 +40,8 @@ function App() {
             [name]: value,
         }));
     };
+    
+    const [showUserManual, setShowUserManual] = useState(false);
 
     // Handle chromosome selection change
     const handleChromosomeSelect = (e) => {
@@ -73,6 +76,12 @@ function App() {
     return (
         <div className="app-container">
             <h1>GWAS Variant Explorer</h1>
+
+            {/* Help Button */}
+            <button className="help-button" onClick={() => setShowUserManual(true)}>Help</button>
+
+            {/* User Manual Modal */}
+            {showUserManual && <UserManual onClose={() => setShowUserManual(false)} />}
 
             {/* Filter Controls */}
             <div className="filter-controls">
