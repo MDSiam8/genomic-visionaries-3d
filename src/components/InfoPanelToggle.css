@@ -1,0 +1,49 @@
+/* src/components/InfoPanelToggle.css */
+
+.info-panel-toggle-container {
+    position: absolute;
+    bottom: 20px; /* Adjust as needed */
+    left: 20px;   /* Adjust as needed */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000; /* Ensure it stays above other elements */
+}
+
+.toggle-button {
+    background-color: #0083b0; /* Cyan-blue color */
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.toggle-button:hover {
+    background-color: #00b4db; /* Lighter cyan-blue on hover */
+}
+
+.info-panel-wrapper {
+    width: 300px; /* Adjust width as needed */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+}
+
+.info-panel-wrapper.open {
+    max-height: 500px; /* Adjust based on content */
+    opacity: 1;
+    margin-top: 10px;
+}
+
+.info-panel-wrapper.closed {
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0;
+}

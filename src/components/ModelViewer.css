@@ -1,0 +1,154 @@
+/* src/components/ModelViewer.css */
+
+.model-viewer-container {
+    position: relative; /* To position the Info Panel Toggle absolutely within this container */
+    width: 100%;
+    height: 100%;
+    background-color: #0e0f29; /* Match the 3D canvas background */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Tooltip Styling */
+.tooltip {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333333;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    max-width: 220px;
+    pointer-events: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.tooltip-visible {
+    opacity: 1;
+}
+
+/* Information Panel Toggle Container */
+.info-panel-toggle-container {
+    position: absolute;
+    bottom: 20px; /* Adjust as needed */
+    left: 20px;   /* Adjust as needed */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000; /* Ensure it stays above other elements */
+}
+
+/* Toggle Button */
+.toggle-button {
+    background-color: #0083b0; /* Cyan-blue color */
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.toggle-button:hover {
+    background-color: #00b4db; /* Lighter cyan-blue on hover */
+    transform: scale(1.1);
+}
+
+.toggle-button:active {
+    transform: scale(0.95);
+}
+
+/* Information Panel Wrapper */
+.info-panel-wrapper {
+    width: 300px; /* Adjust width as needed */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+    opacity: 0;
+    transform: translateY(20px); /* Slight downward shift when closed */
+}
+
+.info-panel-wrapper.open {
+    max-height: 500px; /* Adjust based on content */
+    opacity: 1;
+    transform: translateY(0);
+    margin-top: 10px;
+}
+
+.info-panel-wrapper.closed {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    margin-top: 0;
+}
+
+/* Information Panel Styling */
+.info-panel {
+    background: rgba(255, 255, 255, 0.95); /* Semi-transparent white background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    font-family: 'Montserrat', sans-serif;
+    color: #333333;
+}
+
+.info-panel h2 {
+    margin-top: 0;
+    font-size: 1.8em;
+    background: linear-gradient(90deg, #00b4db, #0083b0); /* Cyan-blue gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.info-panel p {
+    font-size: 0.95em;
+    line-height: 1.6;
+}
+
+.info-panel ul {
+    list-style: disc;
+    margin-left: 20px;
+    padding-left: 0;
+}
+
+.additional-traits {
+    margin-top: 15px;
+}
+
+.additional-traits h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.additional-traits label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.additional-traits input {
+    margin-right: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .model-viewer-container {
+        height: 400px;
+    }
+
+    .info-panel-toggle-container {
+        bottom: 10px;
+        left: 10px;
+    }
+
+    .info-panel-wrapper {
+        width: 250px;
+    }
+}

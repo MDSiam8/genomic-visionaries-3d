@@ -1,0 +1,26 @@
+[
+    {
+        "Chromosome": "1",
+        "Position": 943995,
+        "ReferenceAllele": "C",
+        "AlternateAllele": "T",
+        "TraitAssociation": "Trait 1",
+        "Color": "#FF5733"
+    },
+    {
+        "Chromosome": "1",
+        "Position": 1014143,
+        "ReferenceAllele": "C",
+        "AlternateAllele": "G",
+        "TraitAssociation": "Trait 2",
+        "Color": "#33FF57"
+    },
+    {
+        "Chromosome": "2",
+        "Position": 1135324,
+        "ReferenceAllele": "A",
+        "AlternateAllele": "C",
+        "TraitAssociation": "Trait 3",
+        "Color": "#3357FF"
+    }
+]
