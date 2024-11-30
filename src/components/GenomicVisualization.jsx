@@ -6,6 +6,19 @@ const GenomicVisualization = ({ data, onSelectVariant, filters, selectedChromoso
     const [hoveredTrait, setHoveredTrait] = useState(null);
     const [filteredData, setFilteredData] = useState(data);
 
+    // Define chromosome lengths and scaling constants
+    const CHROMOSOME_LENGTHS = {
+        '1': 248956422, '2': 242193529, '3': 198295559, '4': 190214555,
+        '5': 181538259, '6': 170805979, '7': 159345973, '8': 145138636,
+        '9': 138394717, '10': 133797422, '11': 135086622, '12': 133275309,
+        '13': 114364328, '14': 107043718, '15': 101991189, '16': 90338345,
+        '17': 83257441, '18': 80373285, '19': 58617616, '20': 64444167,
+        '21': 46709983, '22': 50818468, 'X': 156040895, 'Y': 57227415,
+    };
+
+    const maxChromLength = Math.max(...Object.values(CHROMOSOME_LENGTHS));
+    const SCALE_LENGTH = 100.0; // Should match the SCALE_LENGTH in your data processing script
+
     useEffect(() => {
         let filtered = data;
 
@@ -57,49 +70,59 @@ const GenomicVisualization = ({ data, onSelectVariant, filters, selectedChromoso
         setFilteredData(filtered);
     }, [filters, data, selectedChromosome]);
 
+    const getScaledChromosomeLength = (chromosome) => {
+        const chromLength = CHROMOSOME_LENGTHS[chromosome];
+        const chromLengthRatio = chromLength / maxChromLength;
+        const visualChromLength = chromLengthRatio * SCALE_LENGTH;
+        return visualChromLength;
+    };
+
     const createChromosomes = () => {
         // If a chromosome is selected, render only that chromosome
         if (selectedChromosome) {
-            const chromosomeIndex = isNaN(selectedChromosome)
-                ? selectedChromosome === "X"
+            const chromosome = selectedChromosome;
+            const chromosomeIndex = isNaN(chromosome)
+                ? chromosome === "X"
                     ? 23
                     : 24 // Assume Y is the 24th chromosome
-                : parseInt(selectedChromosome);
+                : parseInt(chromosome);
+
+            const chromLength = getScaledChromosomeLength(chromosome);
 
             return (
                 <mesh
-                    key={chromosomeIndex}
+                    key={chromosome}
                     position={[0, chromosomeIndex * -6, 0]}
                 >
-                    <boxGeometry args={[100, 1, 1]} />
+                    <boxGeometry args={[chromLength, 1, 1]} />
                     <meshBasicMaterial color="white" />
                 </mesh>
             );
         }
 
         // Render all chromosomes if no selection is made
-        return Array.from({ length: 23 })
-            .map((_, index) => (
+        return [...Array(24)].map((_, index) => {
+            let chromosome;
+            if (index < 22) {
+                chromosome = (index + 1).toString();
+            } else if (index === 22) {
+                chromosome = 'X';
+            } else {
+                chromosome = 'Y';
+            }
+            const chromosomeIndex = index + 1;
+            const chromLength = getScaledChromosomeLength(chromosome);
+
+            return (
                 <mesh
-                    key={index + 1}
-                    position={[0, (index + 1) * -6, 0]}
+                    key={chromosome}
+                    position={[0, chromosomeIndex * -6, 0]}
                 >
-                    <boxGeometry args={[100, 1, 1]} />
+                    <boxGeometry args={[chromLength, 1, 1]} />
                     <meshBasicMaterial color="white" />
                 </mesh>
-            ))
-            .concat(
-                // Add X and Y chromosomes
-                ['X', 'Y'].map((chromosome, index) => (
-                    <mesh
-                        key={chromosome}
-                        position={[0, (23 + index) * -6, 0]}
-                    >
-                        <boxGeometry args={[100, 1, 1]} />
-                        <meshBasicMaterial color="white" />
-                    </mesh>
-                ))
             );
+        });
     };
 
     const createTraitMarkers = () => {
@@ -117,10 +140,16 @@ const GenomicVisualization = ({ data, onSelectVariant, filters, selectedChromoso
                 MappedGene,
             } = variant;
 
+            const chromosomeIndex = isNaN(Chromosome)
+                ? Chromosome === "X"
+                    ? 23
+                    : 24 // Y chromosome
+                : parseInt(Chromosome);
+
             return (
                 <mesh
                     key={index}
-                    position={[NormalizedPosition, -Chromosome * 6, 0]} // Correct vertical position
+                    position={[NormalizedPosition, chromosomeIndex * -6, 0]} // Correct vertical position
                     onPointerOver={() => setHoveredTrait(variant)}
                     onPointerOut={() => setHoveredTrait(null)}
                     onClick={() => onSelectVariant(variant)}

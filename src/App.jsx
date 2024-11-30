@@ -22,7 +22,8 @@ function App() {
     const [selectedChromosome, setSelectedChromosome] = useState(null);
 
     useEffect(() => {
-        fetch('/assets/o1-gwas_strict_filtered.json')
+        // fetch('/assets/o1-gwas_strict_filtered.json')
+        fetch('/assets/gwas_wrt_chr_size.json')
             .then((response) => response.json())
             .then((jsonData) => {
                 setData(jsonData);
@@ -54,6 +55,14 @@ function App() {
             );
             setFilteredVariants(hairVariants);
         }
+    };
+
+    // Add resetCamera state
+    const [resetCamera, setResetCamera] = useState(false);
+
+    // Handler to reset the camera
+    const handleResetCamera = () => {
+        setResetCamera((prev) => !prev);
     };
 
     // Function to reset filters
@@ -178,10 +187,16 @@ function App() {
 
                 {/* 3D Canvas */}
                 <div className="canvas-container">
+                    <button
+                        className="reset-camera-button"
+                        onClick={handleResetCamera}
+                    >
+                        Reset View
+                    </button>
                     <Canvas camera={{ position: [0, 10, 150], fov: 75 }}>
                         <ambientLight intensity={0.5} />
                         <directionalLight position={[10, 10, 5]} intensity={1} />
-                        <CameraControls />
+                        <CameraControls resetCamera={resetCamera} />
                         {filteredVariants && (
                             <GenomicVisualization
                                 data={filteredVariants}

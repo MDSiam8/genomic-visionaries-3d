@@ -3,7 +3,7 @@ import { useFrame, useThree } from '@react-three/fiber';
 import React, { useEffect, useRef } from 'react';
 import { Vector3 } from 'three';
 
-const CameraControls = () => {
+const CameraControls = ({ resetCamera }) => {
   const { camera, gl } = useThree();
   const moveUp = useRef(false);
   const moveDown = useRef(false);
@@ -12,6 +12,14 @@ const CameraControls = () => {
   const velocity = useRef(new Vector3());
   const direction = useRef(new Vector3());
   const prevTime = useRef(performance.now());
+
+  useEffect(() => {
+    if (resetCamera) {
+      // Reset camera position and rotation
+      camera.position.set(0, 10, 150);
+      camera.rotation.set(0, 0, 0);
+    }
+  }, [resetCamera, camera]);
 
   // Keyboard input
   useEffect(() => {
