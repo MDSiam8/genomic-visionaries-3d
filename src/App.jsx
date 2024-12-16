@@ -20,6 +20,7 @@ function App() {
         maxOddsRatio: '',
     });
     const [selectedChromosome, setSelectedChromosome] = useState(null);
+    const [isExplodedView, setIsExplodedView] = useState(false); // New state for Exploded View
 
     useEffect(() => {
         // fetch('/assets/o1-gwas_strict_filtered.json')
@@ -79,12 +80,18 @@ function App() {
         setSelectedChromosome(null);
     };
 
+    // Handler for Exploded View checkbox
+    const handleExplodedViewChange = (e) => {
+        setIsExplodedView(e.target.checked);
+    };
+
     return (
         <div className="app-container">
             <h1>GWAS Variant Explorer</h1>
 
             {/* Filter Controls */}
             <div className="filter-controls">
+                {/* Position Filters */}
                 <div className="filter-group">
                     <label>
                         Min Position:
@@ -108,6 +115,7 @@ function App() {
                     </label>
                 </div>
 
+                {/* Trait Keyword Filter */}
                 <div className="filter-group">
                     <label>
                         Trait Keyword:
@@ -121,12 +129,13 @@ function App() {
                     </label>
                 </div>
 
+                {/* Chromosome Selection */}
                 <div className="filter-group">
                     <label>
                         Select Chromosome:
                         <select value={selectedChromosome || ''} onChange={handleChromosomeSelect}>
                             <option value="">All Chromosomes</option>
-                            {[...Array(23)].map((_, i) => (
+                            {[...Array(22)].map((_, i) => (
                                 <option key={i + 1} value={i + 1}>
                                     Chromosome {i + 1}
                                 </option>
@@ -137,12 +146,13 @@ function App() {
                     </label>
                 </div>
 
+                {/* P-Value Filter */}
                 <div className="filter-group">
                     <label>
-                        Min P-Value: {/* Changed label from Max to Min P-Value */}
+                        Min P-Value:
                         <input
                             type="number"
-                            name="minPValue" // Changed name from maxPValue to minPValue
+                            name="minPValue"
                             value={filters.minPValue}
                             onChange={handleFilterChange}
                             placeholder="e.g., 1e-5"
@@ -151,6 +161,7 @@ function App() {
                     </label>
                 </div>
 
+                {/* Odds Ratio Filters */}
                 <div className="filter-group">
                     <label>
                         Min Odds Ratio:
@@ -173,6 +184,18 @@ function App() {
                             placeholder="e.g., 3.0"
                             step="any"
                         />
+                    </label>
+                </div>
+
+                {/* Exploded View Checkbox */}
+                <div className="filter-group">
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked={isExplodedView}
+                            onChange={handleExplodedViewChange}
+                        />
+                        Exploded View
                     </label>
                 </div>
 
@@ -203,6 +226,7 @@ function App() {
                                 onSelectVariant={(variant) => setSelectedVariant(variant)}
                                 filters={filters}
                                 selectedChromosome={selectedChromosome}
+                                isExplodedView={isExplodedView} // Pass the state as a prop
                             />
                         )}
                     </Canvas>
@@ -216,8 +240,7 @@ function App() {
                     onClose={() => setSelectedVariant(null)}
                 />
             )}
-        </div>
-    );
-}
+        </div>)
+    }
 
-export default App;
+    export default App;
